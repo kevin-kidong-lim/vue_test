@@ -1,80 +1,18 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list dense>
-        <!-- router 로 링크를 만들수 있다. -->
-        <v-list-tile router :to="{name: 'home'}" exact>
-          <v-list-tile-action>
-            <i class="fas fa-home"></i>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Home</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile @click="$router.push({name:'home'})" exact>
-          <v-list-tile-action>
-            <i class="fas fa-home"></i>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Home</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <!-- 생략가능 -->
-        <v-list-tile @click="$router.push('/about')">
-        <!-- $router.push({name:'home', query:'', param:''}) -->
-        <!-- <v-list-tile @click="$router.push({path:'/about'})"> -->
-          <v-list-tile-action>
-            <i class="fas fa-user"></i>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>About</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-
-         <!-- <v-list-tile @click="$router.push({name:'users', 
-           params: { userId: 4321 , name:'kevin'},
-           query: { group:'member', category: 'trial'}
-           })" exact> -->
-      <!-- 하위 메뉴 만들기  -->
-          <v-list-tile router :to="{name: 'users'}" exact>
-          <v-list-tile-action>
-            <i class="fas fa-home"></i>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Users</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-
-
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar color="indigo" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
-    </v-toolbar>
-    <v-content>
-
-<!-- router 결과물을 뿌려준다.. 동작을 한다. -->
-      <router-view></router-view>
-
-    </v-content>
-    <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2017</span>
-    </v-footer>
-  </v-app>
+  <ion-app>
+    <ion-router-outlet />
+  </ion-app>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    drawer: null
-  }),
-  props: {
-    source: String
+<script lang="ts">
+import { IonApp, IonRouterOutlet } from '@ionic/vue';
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    IonApp,
+    IonRouterOutlet
   }
-}
+});
 </script>

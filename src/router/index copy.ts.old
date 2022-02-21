@@ -1,0 +1,119 @@
+import { createRouter, createWebHistory } from '@ionic/vue-router';
+import { RouteRecordRaw } from 'vue-router';
+import HomePage from '../views/HomePage.vue'
+import SlideMenu from '../views/SlideMenu.vue'
+import UserList from '../views/UserList.vue'
+import ListTest from '../views/ListTest.vue'
+import VirturScroll from '../views/VirturScroll.vue'
+import TabTest from '../views/TabTest.vue'
+import ModalTest from '../views/ModalTest.vue'
+
+
+import JavaPage1 from '../views/JavaPage1.vue'
+import JavaPage2 from '../views/JavaPage2.vue'
+import JavaPage3 from '../views/JavaPage3.vue'
+
+const PageTest = () => {
+  return import(/* webpackChunkName: PageTest" */ '../views/PageTest.vue')
+}
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: HomePage
+  },
+  {
+    path: '/page',    
+    name: 'PageTest',    
+    component: PageTest
+  },
+  {
+    path: '/java1',
+    name: 'Java1',
+    component: () =>
+      import(/* webpackChunkName: java1" */ '../views/JavaPage1.vue')
+  },
+  {
+    path: '/java2',
+    name: 'Java2',
+    component: JavaPage2
+  },
+  {
+    path: '/java3',
+    name: 'Java3',
+    component: JavaPage3
+  },
+
+
+
+  {
+    path: '/slide',
+    name: 'SlideMenu',
+    component: SlideMenu
+  }
+  ,
+  {
+    path: '/users',
+    name: 'UserList',
+    component: UserList
+  }
+  ,
+  {
+    path: '/list',
+    name: 'ListTest',
+    component: ListTest
+  }
+  ,
+  {
+    path: '/vscroll',
+    name: 'VirturScroll',
+    component: VirturScroll
+  }
+  ,
+  {
+    path: '/tabs',
+    name: 'TabTest',
+    component: TabTest,
+    children: [
+      {
+        path: "tab1",
+        name: "tab1",
+        components: {
+          tab1Route: () => import("@/views/TabTest.vue"),
+        },
+      },
+      {
+        path: "tab1/details",
+        name: "tab1-details",
+        components: {
+          tab1Route: () => import("@/views/TabSpeaker.vue"),
+        },
+      },
+      {
+        path: "tab2",
+        name: "tab2",
+        components: {
+          tab2Route: () => import("@/views/TapScheule.vue"),
+        },
+      },
+    ]
+  }
+  ,
+  {
+    path: '/modal',
+    name: 'ModalTest',
+    component: ModalTest
+  }
+]
+
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes
+})
+
+export default router
+///VirturScroll
